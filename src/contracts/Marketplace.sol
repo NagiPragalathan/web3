@@ -10,6 +10,7 @@ contract Marketplace {
         uint id;
         string name;
         uint price;
+        uint sqft;
         address payable owner;
         bool purchased;
     }
@@ -34,7 +35,7 @@ contract Marketplace {
         name = "Dapp University Marketplace";
     }
 
-    function createProduct(string memory _name, uint _price) public {
+    function createProduct(string memory _name, uint _price, uint _sqft) public {
         // Require a valid name
         require(bytes(_name).length > 0);
         // Require a valid price
@@ -42,9 +43,9 @@ contract Marketplace {
         // Increment product count
         productCount ++;
         // Create the product
-        products[productCount] = Product(productCount, _name, _price, msg.sender, false);
+        products[productCount] = Product(productCount, _name, _price,_sqft, msg.sender, false);
         // Trigger an event
-        emit ProductCreated(productCount, _name, _price, msg.sender, false);
+        emit ProductCreated(productCount, _name, _price, _sqft,3 msg.sender, false);
     }
 
     function purchaseProduct(uint _id) public payable {

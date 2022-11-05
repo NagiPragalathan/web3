@@ -15,6 +15,7 @@ class Main extends Component {
               this.productPrice.value.toString(),
               "Ether"
             );
+            const sqft=this.productSqft.value;
             this.props.createProduct(name, price);
           }}
         >
@@ -42,6 +43,18 @@ class Main extends Component {
               required
             />
           </div>
+          <div className="form-group mr-sm-2">
+            <input
+              id="productSqft"
+              type="text"
+              ref={(input) => {
+                this.productSqft = input;
+              }}
+              className="form-control"
+              placeholder="Property sqft"
+              required
+            />
+          </div>
           <button type="submit" className="btn btn-primary">
             Add Property
           </button>
@@ -54,6 +67,7 @@ class Main extends Component {
               <th scope="col">#</th>
               <th scope="col">Name</th>
               <th scope="col">Price</th>
+              <th scope="col">Sqft</th>
               <th scope="col">Owner</th>
               <th scope="col"></th>
             </tr>
@@ -71,6 +85,7 @@ class Main extends Component {
                     )}{" "}
                     Eth
                   </td>
+                  <td>{product.sqft}</td>
                   <td>{product.owner}</td>
                   <td>
                     {!product.purchased ? (
